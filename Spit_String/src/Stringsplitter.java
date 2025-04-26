@@ -1,12 +1,7 @@
-
 public class Stringsplitter {
 
-
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		String firstSentence = "aaaa bbb cc d";
+    public static void main(String[] args) {
+        String firstSentence = "aaaa bbb cc d";
         String secondSentence = "Hallo Welt";
         String thirdSentence = "Datenstrukturen im Sommersemester 2025";
 
@@ -14,6 +9,11 @@ public class Stringsplitter {
         String[] wordsFirstSentence = splitString(firstSentence);                   //["aaaa", "bbb", "cc", "d"]
         String[] wordsSecondSentence = splitString(secondSentence);                 //["Hallo", "Welt"]
         String[] wordsThirdSentence = splitString(thirdSentence);                   //["Datenstrukturen", "im", "Sommersemester", "2025"]
+
+        // OUTPUT
+        System.out.println("Split First Sentence: [" + String.join(", ", wordsFirstSentence) + "]");
+        System.out.println("Split Second Sentence: [" + String.join(", ", wordsSecondSentence) + "]");
+        System.out.println("Split Third Sentence: [" + String.join(", ", wordsThirdSentence) + "]");
 
         String[] swappedFirstSentence = swapFirstLastWords(wordsFirstSentence);     //Erwartet: d bbb cc aaaa
         String[] swappedSecondSentence = swapFirstLastWords(wordsSecondSentence);   //["Welt", "Hallo"]
@@ -23,86 +23,79 @@ public class Stringsplitter {
         String[] sortSecondSentence = sortWordsByLength(wordsSecondSentence);       //["Welt", "Hallo"]
         String[] sortThirdSentence = sortWordsByLength(wordsThirdSentence);         //["im", "2025", "Sommersemester", "Datenstrukturen"]
 
-        String[] wordLengthTwo = searchWordWithLength(wordsFirstSentence, 2);   //cc
-        String[] wordLengthFour = searchWordWithLength(wordsSecondSentence, 4); //Welt
-        String[] wordLenghtFourteen = searchWordWithLength(wordsThirdSentence, 14);   //Sommersemester
+        String wordLengthTwo = searchWordWithLength(wordsFirstSentence, 2);   //cc
+        String wordLengthFour = searchWordWithLength(wordsSecondSentence, 4); //Welt
+        String wordLenghtFourteen = searchWordWithLength(wordsThirdSentence, 14);   //Sommersemester
 
+        // OUTPUT
+        System.out.println("Split First Sentence: [" + String.join(", ", wordsFirstSentence) + "]");
+        System.out.println("Split Second Sentence: [" + String.join(", ", wordsSecondSentence) + "]");
+        System.out.println("Split Third Sentence: [" + String.join(", ", wordsThirdSentence) + "]");
 
-                                                                            
-       
-        System.out.println("Split First Sentence: " + String.join(", ", wordsFirstSentence));
-        System.out.println("Split Second Sentence: " + String.join(", ", wordsSecondSentence));
-        System.out.println("Split Third Sentence: " + String.join(", ", wordsThirdSentence));
+        System.out.println("Swapped First Sentence: [" + String.join(", ", swappedFirstSentence) + "]");
+        System.out.println("Swapped Second Sentence: [" + String.join(", ", swappedSecondSentence) + "]");
+        System.out.println("Swapped Third Sentence: [" + String.join(", ", swappedThirdSentence) + "]");
 
-        System.out.println("Swapped First Sentence: " + String.join(", ", swappedFirstSentence));
-        System.out.println("Swapped Second Sentence: " + String.join(", ", swappedSecondSentence));
-        System.out.println("Swapped Third Sentence: " + String.join(", ", swappedThirdSentence));
+        System.out.println("Sorted First Sentence: [" + String.join(", ", sortFirstSentence) + "]");
+        System.out.println("Sorted Second Sentence: [" + String.join(", ", sortSecondSentence) + "]");
+        System.out.println("Sorted Third Sentence: [" + String.join(", ", sortThirdSentence) + "]");
 
-        System.out.println("Sorted First Sentence: " + String.join(", ", sortFirstSentence));
-        System.out.println("Sorted Second Sentence: " + String.join(", ", sortSecondSentence));
-        System.out.println("Sorted Third Sentence: " + String.join(", ", sortThirdSentence));
-
-        System.out.println("Word with length 2: " + String.join(", ", wordLengthTwo));
-        System.out.println("Word with length 4: " + String.join(", ", wordLengthFour));
-        System.out.println("Word with length 14: " + String.join(", ", wordLenghtFourteen));
+        System.out.println("Word with length 2: " + wordLengthTwo);
+        System.out.println("Word with length 4: " + wordLengthFour);
+        System.out.println("Word with length 14: " + wordLenghtFourteen);
     }
-	public static String[] splitString(String sentence) 
-    {
-        {
-            String[] arrOfStr = sentence.split(" ");
-            String output = "";
-            for (int i = 0; i < arrOfStr.length; i++) {
-                output = output.concat(arrOfStr[i]);
-                if (i != arrOfStr.length - 1) {
-                    output = output.concat(",");
-                }
-            }
-    
-            return arrOfStr;
-        }
-    }
+
+    public static String[] splitString(String sentence) {
         
+       // Split the sentence into words
+       String[] arrOfStr = sentence.split(" ");
+       return arrOfStr;
+}
+
     public static String[] sortWordsByLength(String[] words) {
-	    int len = words.length;
-
-	    for (int i = 0; i < len - 1; i++) {
-	        for (int j = i + 1; j < len; j++) {
-	            if (words[j].length() < words[i].length()) {
-	                // Swap words[i] and words[j]
-	                String temp = words[i];
-	                words[i] = words[j];
-	                words[j] = temp;
-	            }
-	        }
-	    }
-
-	    return words;
-	}
-    public static String[] swapFirstLastWords(String[] words) {
         int len = words.length;
 
-        if (len >= 2) {
-            String temp = words[0];
-            words[0] = words[len - 1];
-            words[len - 1] = temp;
-        } else {
-            System.out.println("You must give 2 or more words.");
-        }
+        for (int i = 0; i < len - 1; i++) {
+            for (int j = i + 1; j < len; j++) {
+                String tempi = words[i];
+                String tempj = words[j];
 
+                if (tempj.length() < tempi.length()) {
+                    // Swap words[i] and words[j]
+                    words[i] = words[j];
+                    words[j] = tempi;
+                }
+            }
+        }
+        
         return words;
     }
 
 
-    public static String[] searchWordWithLength(String[] words, int length) {
-        for (String word : words) {
-            if (word.length() == length) {
-                return new String[]{ word };  // return the word as array.
+    public static String[] swapFirstLastWords(String[] words) {
+        if (words.length >= 2) {
+            String[] swappedWords = new String[words.length];
+            for (int i = 0; i < words.length; i++) {
+                swappedWords[i] = words[i];
             }
+            String temp = swappedWords[0];
+            swappedWords[0] = swappedWords[swappedWords.length - 1];
+            swappedWords[swappedWords.length - 1] = temp;
+            return swappedWords;
+        } else {
+            System.out.println("You must give 2 or more words.");
+            return words;
         }
-
-        // when no word is found
-        return new String[]{ "No word found with this length" };
     }
 
-
+    public static String searchWordWithLength(String[] words, int length) {
+        for (int i = 0; i < words.length; i++) {
+            if (words[i].length() == length) {
+                return words[i];
+            }
+        }
+        return "No word found with this length";
+    }
 }
+
+
